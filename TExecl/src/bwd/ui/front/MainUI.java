@@ -1,4 +1,4 @@
-package dbw.ui.front;
+package bwd.ui.front;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -13,11 +13,11 @@ import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
+import bwd.action.Action;
 import bwd.interfaces.IfSheet1;
 import bwd.util.ExeclException;
-import dbw.action.Action;
 
-public class ParseExeclUI implements ActionListener {
+public class MainUI implements ActionListener {
 
 	private JFrame frame = new JFrame("Execl转换工具 v1.1");
 	private Container c = frame.getContentPane();
@@ -28,7 +28,7 @@ public class ParseExeclUI implements ActionListener {
 	private JButton btnSubmit = new JButton("提交");
 	private JButton btnClose = new JButton("关闭");
 	
-	public ParseExeclUI() {
+	public MainUI() {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 200);
 		c.setLayout(new BorderLayout());
@@ -115,7 +115,7 @@ public class ParseExeclUI implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		new ParseExeclUI();
+		new MainUI();
 	}
 
 }
