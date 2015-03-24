@@ -1,4 +1,4 @@
-package dbw.member;
+package bwd.src.sheet1;
 
 public enum PayEnum {
 
