@@ -1,4 +1,4 @@
-package bwd.ui.front;
+package bwd.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;

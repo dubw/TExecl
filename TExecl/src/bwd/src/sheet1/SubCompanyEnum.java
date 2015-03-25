@@ -10,7 +10,7 @@ public enum SubCompanyEnum {
 	NanjingLishui("南京溧水公司"),
 	NanjingLuhe("南京六合公司"),
 	NanjingPukou("南京浦口公司"),
-	NanjingYuhua("南京雨花公司"),
+	NanjingYuhua("南京雨花广电"),
 	// 其他地市
 	Changzhou("常州分公司"),
 	Huaian("淮安分公司"),
@@ -54,7 +54,7 @@ public enum SubCompanyEnum {
 		else if("南京浦口公司".equals(value)) {
 			return SubCompanyEnum.NanjingPukou;
 		}
-		else if("南京雨花公司".equals(value)) {
+		else if("南京雨花广电".equals(value)) {
 			return SubCompanyEnum.NanjingYuhua;
 		}
 		else if ("常州分公司".equals(value)) {

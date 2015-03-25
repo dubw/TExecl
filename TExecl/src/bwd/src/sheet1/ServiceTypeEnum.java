@@ -2,28 +2,33 @@ package bwd.src.sheet1;
 
 public enum ServiceTypeEnum {
 
-	ICNTV("ICNTV"),
+	// 视频
+	HLWSPBY("互联网视频-包月"),
 	BKXY("百科学苑"),
+	// 教育
 	GGLY("果果乐园-包月"),
 	YFJY("义方教育"),
 	ZXYQ("自学引擎"),
+	// 娱乐
+	CHYYBY("彩虹音乐-包月"),
+	YYXBY("云游戏-包月"),
 	YLY("1+云乐园"),
 	RWGC("热舞广场"),
+	// 阅读
 	XYTS("喜阅童书"),
-	YZSC("云中书城"),
-	TQZX("天气资讯"),
-	JSYX("极速院线"),
-	MGTV("芒果TV"),
-	
-	CHYYBY("彩虹音乐-包月"),
-	CHYYYCH("彩虹音乐-演唱会"),
-	HLWSPBY("互联网视频-包月"),
-	HLWSPDB("互联网视频-点播"),
-	QZHBBY("启智绘本-包月"),
-	QZHBDB("启智绘本-点播"),
 	YSTSBY("有声听书-包月"),
+	QZHBBY("启智绘本-包月"),
+	YZSC("云中书城"),
+	// 资讯
+	TQZX("天气资讯"),
+	
+	// other
+	JSYX("极速院线"),
+	MGTV("芒果TV"),	
+	CHYYYCH("彩虹音乐-演唱会"),
+	HLWSPDB("互联网视频-点播"),
+	QZHBDB("启智绘本-点播"),
 	YSTSDB("有声听书-点播"),
-	YYXBY("云游戏-包月"),
 	YYXDB("云游戏-点播"),
 	;
 	
@@ -41,10 +46,7 @@ public enum ServiceTypeEnum {
 		if (null == value) {
 			return null;
 		}
-		if ("ICNTV".equals(value)) {
-			return ServiceTypeEnum.ICNTV;
-		}
-		else if("百科学苑".equals(value)) {
+		if("百科学苑".equals(value)) {
 			return ServiceTypeEnum.BKXY;
 		}
 		else if("果果乐园-包月".equals(value)) {

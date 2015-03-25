@@ -9,7 +9,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
 
-import bwd.dest.sheet1.OutServiceItem;
+import bwd.dest.sheet1.OutServiceTypeEnum;
+import bwd.dest.sheet1.OutSheet1;
 import bwd.interfaces.IfSheet1;
 import bwd.src.sheet1.PayEnum;
 import bwd.src.sheet1.ServiceTypeEnum;
@@ -98,7 +99,7 @@ public class Sheet1Action {
 		row.createCell(11).setCellValue("南京区县");
 		row.createCell(12).setCellValue("地市公司");		
 	}
-	private void setLineData(Row row, OutServiceItem out, ServiceTypeEnum type) {
+	private void setLineData(Row row, OutSheet1 out, OutServiceTypeEnum type) {
 		// 名称
 		row.createCell(0).setCellValue(type.getServiceName());
 		// 订购次数：南京
@@ -133,9 +134,9 @@ public class Sheet1Action {
 		Row rowSubTitle = sheet.createRow(rownum++);
 		setSubTitle(rowSubTitle);
 		// 添加数据
-		OutServiceItem out = new OutServiceItem();
+		OutSheet1 out = new OutSheet1();
 		out.parseServiceItem2Out(srcSheet);
-		for (ServiceTypeEnum serviceType : ServiceTypeEnum.values()) {
+		for (OutServiceTypeEnum serviceType : OutServiceTypeEnum.values()) {
 			Row row = sheet.createRow(rownum++);
 			setLineData(row, out, serviceType);
 		}
