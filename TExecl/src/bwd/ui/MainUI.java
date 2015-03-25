@@ -19,7 +19,7 @@ import bwd.util.ExeclException;
 
 public class MainUI implements ActionListener {
 
-	private JFrame frame = new JFrame("Execl转换工具 v1.1");
+	private JFrame frame = new JFrame("Execl转换工具 v1.2");
 	private Container c = frame.getContentPane();
 	private JLabel label = new JLabel("HELLO");
 	private JTextField pathname = new JTextField(30);
