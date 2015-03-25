@@ -27,7 +27,7 @@ public class Sheet1Action {
 		}
 		
 		ArrayList<Row> rows = ExeclUtil.readRows(sheet, IfSheet1.getFirstrow(), 
-							IfSheet1.getLastrow()<=0?sheet.getLastRowNum()-1+IfSheet1.getLastrow():IfSheet1.getLastrow());
+							IfSheet1.getLastrow()<=0?sheet.getLastRowNum()+IfSheet1.getLastrow():IfSheet1.getLastrow());
 		if (null == rows) {
 			return null;
 		}

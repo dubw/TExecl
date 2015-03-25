@@ -6,7 +6,7 @@ public final class IfSheet1 {
 	private static String srcSheet1 = "Report"; 
 	private static String destPathname = null; // 目标文件存放全路径,包括文件名和后缀
 	private static String destSheetname = "out";
-	private static int firstrow = 4;
+	private static int firstrow = 3;
 	private static int lastrow = -2;
 	private static int firstcolumn = 0;
 	private static int lastcolumn = 15;

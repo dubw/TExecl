@@ -50,20 +50,6 @@ public class ExeclUtil {
 	}
 	
 	/**
-	 * 根据Execl句柄创建sheet页面
-	 * @param wb Execl句柄 
-	 * @param sheetname sheet页名称
-	 * @return sheet页面句柄
-	 */
-	@Deprecated
-	public static Sheet createSheet(Workbook wb, String sheetname) {
-		if ((null == wb) || (null == sheetname)) {
-			return null;
-		}
-		return wb.createSheet(sheetname);
-	}
-	
-	/**
 	 * 用于打开一个已经存在且可读的文件
 	 * @param pathname 全路径名,应该以'.xls'或者'.xlsx'结尾
 	 * @return 返回已读取的execl对象wb
@@ -77,20 +63,6 @@ public class ExeclUtil {
 		}
 
 		return WorkbookFactory.create(new File(pathname));
-	}
-	
-	/**
-	 * 根据传入的Execl句柄打开sheet页面
-	 * @param wb execl句柄
-	 * @param sheetname sheet名称
-	 * @return 返回sheet页面句柄
-	 */
-	@Deprecated
-	public static Sheet openSheet(Workbook wb, String sheetname) {
-		if (null == sheetname) {
-			return null;
-		}
-		return wb.getSheet(sheetname);
 	}
 	
 	/**
