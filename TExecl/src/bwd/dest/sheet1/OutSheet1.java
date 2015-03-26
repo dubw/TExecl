@@ -41,7 +41,9 @@ public class OutSheet1 {
 			if (SubCompanyEnum.Nanjing == item.getSubcompany()) {
 				if (PayEnum.Dinggou == item.getPay()) {
 					this.njMap.put(outItem, item.getSubscribeNum() + (this.njMap.get(outItem)==null?0.0:this.njMap.get(outItem)));
-					this.njTerminalMap.put(outItem, item.getIncreaseNum() + (this.njTerminalMap.get(outItem)==null?0.0:this.njTerminalMap.get(outItem)));
+				}
+				else if (PayEnum.Yewudinggou == item.getPay()) {
+					this.njTerminalMap.put(outItem, item.getIncreaseTerminalNum() + (this.njTerminalMap.get(outItem)==null?0.0:this.njTerminalMap.get(outItem)));
 					this.njUserMap.put(outItem, item.getSubscribeCycleEndNum() + (this.njUserMap.get(outItem)==null?0.0:this.njUserMap.get(outItem)));
 				}
 				else if (PayEnum.Xiaofei == item.getPay()) {
@@ -56,7 +58,9 @@ public class OutSheet1 {
 						|| (SubCompanyEnum.NanjingYuhua == item.getSubcompany())) {
 				if (PayEnum.Dinggou == item.getPay()) {
 					this.njExMap.put(outItem, item.getSubscribeNum() + (this.njExMap.get(outItem)==null?0.0:this.njExMap.get(outItem)));
-					this.njExTerminalMap.put(outItem, item.getIncreaseNum() + (this.njExTerminalMap.get(outItem)==null?0.0:this.njExTerminalMap.get(outItem)));
+				}
+				else if (PayEnum.Yewudinggou == item.getPay()) {
+					this.njExTerminalMap.put(outItem, item.getIncreaseTerminalNum() + (this.njExTerminalMap.get(outItem)==null?0.0:this.njExTerminalMap.get(outItem)));
 					this.njExUserMap.put(outItem, item.getSubscribeCycleEndNum() + (this.njExUserMap.get(outItem)==null?0.0:this.njExUserMap.get(outItem)));
 				}
 				else if (PayEnum.Xiaofei == item.getPay()) {
@@ -66,7 +70,9 @@ public class OutSheet1 {
 			else {
 				if (PayEnum.Dinggou == item.getPay()) {
 					this.otherMap.put(outItem, item.getSubscribeNum() + (this.otherMap.get(outItem)==null?0.0:this.otherMap.get(outItem)));
-					this.otherTerminalMap.put(outItem, item.getIncreaseNum() + (this.otherTerminalMap.get(outItem)==null?0.0:this.otherTerminalMap.get(outItem)));
+				}
+				else if (PayEnum.Yewudinggou == item.getPay()) {
+					this.otherTerminalMap.put(outItem, item.getIncreaseTerminalNum() + (this.otherTerminalMap.get(outItem)==null?0.0:this.otherTerminalMap.get(outItem)));
 					this.otherUserMap.put(outItem, item.getSubscribeCycleEndNum() + (this.otherUserMap.get(outItem)==null?0.0:this.otherUserMap.get(outItem)));
 				}
 				else if (PayEnum.Xiaofei == item.getPay()) {
