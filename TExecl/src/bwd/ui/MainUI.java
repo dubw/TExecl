@@ -14,7 +14,7 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
 import bwd.action.Action;
-import bwd.interfaces.IfSheet1;
+import bwd.interfaces.Sheet1Param;
 import bwd.util.ExeclException;
 
 public class MainUI implements ActionListener {
@@ -94,9 +94,9 @@ public class MainUI implements ActionListener {
 		
 			Action action = new Action();
 			//读取页面数据到全局变量中
-			IfSheet1.setSrcPathname(this.pathname.getText());
-			IfSheet1.setSheetname(this.sheetName.getText());
-			IfSheet1.setDestPathname(this.destpathname.getText());
+			Sheet1Param.setSrcPathname(this.pathname.getText());
+			Sheet1Param.setSheetname(this.sheetName.getText());
+			Sheet1Param.setDestPathname(this.destpathname.getText());
 
 			try {
 				action.action();

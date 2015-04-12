@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import bwd.interfaces.IfSheet1;
+import bwd.interfaces.Sheet1Param;
 
 /**
  * 包含所有使用的Execl工具
@@ -97,9 +97,9 @@ public class ExeclUtil {
 			return null;
 		}
 		
-		if ((column<IfSheet1.getFirstcolumn()) || (column>IfSheet1.getLastcolumn())) {
-			throw new ExeclException("列数出错!\n第一列:" + IfSheet1.getFirstcolumn()+1 
-										+ "\n最后一列:" + IfSheet1.getLastcolumn() + "\n");
+		if ((column<Sheet1Param.getFirstcolumn()) || (column>Sheet1Param.getLastcolumn())) {
+			throw new ExeclException("列数出错!\n第一列:" + Sheet1Param.getFirstcolumn()+1 
+										+ "\n最后一列:" + Sheet1Param.getLastcolumn() + "\n");
 		}
 		Object o = null;
 		

@@ -8,7 +8,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import bwd.interfaces.IfSheet1;
+import bwd.interfaces.Sheet1Param;
 import bwd.src.sheet1.PayEnum;
 import bwd.src.sheet1.Report;
 import bwd.src.sheet1.ServiceItem;
@@ -46,8 +46,8 @@ public class SrcSheet1ToReport {
 			return null;
 		}
 		
-		ArrayList<Row> rows = ExeclUtil.readRows(srcSheet, IfSheet1.getFirstrow(), 
-							IfSheet1.getLastrow()<=0?srcSheet.getLastRowNum()+IfSheet1.getLastrow():IfSheet1.getLastrow());
+		ArrayList<Row> rows = ExeclUtil.readRows(srcSheet, Sheet1Param.getFirstrow(), 
+							Sheet1Param.getLastrow()<=0?srcSheet.getLastRowNum()+Sheet1Param.getLastrow():Sheet1Param.getLastrow());
 		if (null == rows) {
 			return null;
 		}

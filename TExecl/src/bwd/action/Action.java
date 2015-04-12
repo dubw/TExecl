@@ -9,7 +9,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import bwd.interfaces.IfSheet1;
+import bwd.interfaces.Sheet1Param;
 import bwd.sheet1.SrcSheet1ToDestSheet1;
 import bwd.util.ExeclException;
 import bwd.util.ExeclUtil;
@@ -34,18 +34,18 @@ public class Action {
 		
 		try {
 			try {
-				srcWb = ExeclUtil.openExecl(IfSheet1.getSrcPathname());
+				srcWb = ExeclUtil.openExecl(Sheet1Param.getSrcPathname());
 			} catch (InvalidFormatException | IOException e) {
-				throw new ExeclException("打开execl文件失败！路径为:" + IfSheet1.getSrcPathname());
+				throw new ExeclException("打开execl文件失败！路径为:" + Sheet1Param.getSrcPathname());
 			}
-			srcSheet = srcWb.getSheet(IfSheet1.getSheetname());
+			srcSheet = srcWb.getSheet(Sheet1Param.getSheetname());
 			if (null == srcSheet) {
-				throw new ExeclException("打开sheet页面失败！页面名为:" + IfSheet1.getSheetname());
+				throw new ExeclException("打开sheet页面失败！页面名为:" + Sheet1Param.getSheetname());
 			}
 			// 创建生成的wb
-			destWb = ExeclUtil.createExecl(IfSheet1.getDestPathname());
+			destWb = ExeclUtil.createExecl(Sheet1Param.getDestPathname());
 			if (null == destWb) {
-				throw new ExeclException("创建execl文件失败！路径为:" + IfSheet1.getDestPathname());
+				throw new ExeclException("创建execl文件失败！路径为:" + Sheet1Param.getDestPathname());
 			}
 			
 			// 生成第一个sheet页
@@ -55,7 +55,7 @@ public class Action {
 			// TODO
 			
 			// 输出excel文件
-			File file = new File(IfSheet1.getDestPathname());
+			File file = new File(Sheet1Param.getDestPathname());
 			if (file.exists()) {
 				file.delete();
 			}
@@ -63,7 +63,7 @@ public class Action {
 			fileOut = new FileOutputStream(file);
 			destWb.write(fileOut);
 			fileOut.close();
-			System.out.println(IfSheet1.getDestPathname());	
+			System.out.println(Sheet1Param.getDestPathname());	
 		}
 		catch (IOException e) {
 			throw new ExeclException("读写文件I/O出问题！");
@@ -95,9 +95,9 @@ public class Action {
 	 */
 	private void generateDestSheet1(Workbook destwb, Sheet srcSheet) throws ExeclException {
 		// 创建生成Excel的sheet1页面
-		Sheet destsheet = destwb.createSheet(IfSheet1.getDestSheetname());
+		Sheet destsheet = destwb.createSheet(Sheet1Param.getDestSheetname());
 		if (null == destsheet) {
-			throw new ExeclException("创建sheet页面失败！页面名为:" + IfSheet1.getDestSheetname());
+			throw new ExeclException("创建sheet页面失败！页面名为:" + Sheet1Param.getDestSheetname());
 		}
 		SrcSheet1ToDestSheet1 srcSheet1Adaptor = new SrcSheet1ToDestSheet1(srcSheet);
 		srcSheet1Adaptor.fillOutSheet(destsheet);
@@ -107,9 +107,9 @@ public class Action {
 		String pathname = "C:\\Users\\Administrator\\Desktop\\3.171.xls";
 		String sheetname = "Report";
 		String destpathname = "C:\\Users\\Administrator\\Desktop\\3.xls";
-		IfSheet1.setSrcPathname(pathname);
-		IfSheet1.setSheetname(sheetname);
-		IfSheet1.setDestPathname(destpathname);
+		Sheet1Param.setSrcPathname(pathname);
+		Sheet1Param.setSheetname(sheetname);
+		Sheet1Param.setDestPathname(destpathname);
 		Action a = new Action();
 		try {
 			a.action();

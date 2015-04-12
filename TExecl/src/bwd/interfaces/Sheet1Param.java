@@ -1,6 +1,6 @@
 package bwd.interfaces;
 
-public final class IfSheet1 {
+public final class Sheet1Param {
 
 	private static String srcPathname = null; // 源文件全路径名,包括文件名和后缀
 	private static String srcSheet1 = "Report"; 
@@ -21,7 +21,7 @@ public final class IfSheet1 {
 	 * @param srcPathname the srcPathname to set
 	 */
 	public static void setSrcPathname(String srcPathname) {
-		IfSheet1.srcPathname = srcPathname;
+		Sheet1Param.srcPathname = srcPathname;
 	}
 	/**
 	 * @return the sheetname
@@ -33,7 +33,7 @@ public final class IfSheet1 {
 	 * @param sheetname the sheetname to set
 	 */
 	public static void setSheetname(String sheetname) {
-		IfSheet1.srcSheet1 = sheetname;
+		Sheet1Param.srcSheet1 = sheetname;
 	}
 	/**
 	 * @return the destPathname
@@ -45,13 +45,13 @@ public final class IfSheet1 {
 	 * @param destPathname the destPathname to set
 	 */
 	public static void setDestPathname(String destPathname) {
-		IfSheet1.destPathname = destPathname;
+		Sheet1Param.destPathname = destPathname;
 	}
 	public static String getDestSheetname() {
 		return destSheetname;
 	}
 	public static void setDestSheetname(String destSheetname) {
-		IfSheet1.destSheetname = destSheetname;
+		Sheet1Param.destSheetname = destSheetname;
 	}
 	/**
 	 * @return the firstrow
@@ -63,7 +63,7 @@ public final class IfSheet1 {
 	 * @param firstrow the firstrow to set
 	 */
 	public static void setFirstrow(int firstrow) {
-		IfSheet1.firstrow = firstrow;
+		Sheet1Param.firstrow = firstrow;
 	}
 	/**
 	 * @return the lastrow
@@ -75,7 +75,7 @@ public final class IfSheet1 {
 	 * @param lastrow the lastrow to set
 	 */
 	public static void setLastrow(int lastrow) {
-		IfSheet1.lastrow = lastrow;
+		Sheet1Param.lastrow = lastrow;
 	}
 	/**
 	 * @return the firstcolumn
@@ -87,7 +87,7 @@ public final class IfSheet1 {
 	 * @param firstcolumn the firstcolumn to set
 	 */
 	public static void setFirstcolumn(int firstcolumn) {
-		IfSheet1.firstcolumn = firstcolumn;
+		Sheet1Param.firstcolumn = firstcolumn;
 	}
 	/**
 	 * @return the lastcolumn
@@ -99,7 +99,7 @@ public final class IfSheet1 {
 	 * @param lastcolumn the lastcolumn to set
 	 */
 	public static void setLastcolumn(int lastcolumn) {
-		IfSheet1.lastcolumn = lastcolumn;
+		Sheet1Param.lastcolumn = lastcolumn;
 	}
 
 
