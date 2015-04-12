@@ -32,7 +32,7 @@ public class ExeclUtil {
 	 */
 	public static Workbook createExecl(String pathname) throws ExeclException {
 		if (null == pathname) {
-			return null;
+			throw new ExeclException("请输入待创建Excel表格的路径名！");
 		}
 		Workbook wb = null;
 		
@@ -55,11 +55,12 @@ public class ExeclUtil {
 	 * @return 返回已读取的execl对象wb
 	 * @throws InvalidFormatException
 	 * @throws IOException
+	 * @throws ExeclException 
 	 * @throws FileNotFoundException
 	 */
-	public static Workbook openExecl(String pathname) throws InvalidFormatException, IOException, FileNotFoundException {
+	public static Workbook openExecl(String pathname) throws InvalidFormatException, IOException, ExeclException {
 		if (null == pathname) {
-			return null;
+			throw new ExeclException("没有输入文件路径名！");
 		}
 
 		return WorkbookFactory.create(new File(pathname));
@@ -89,23 +90,6 @@ public class ExeclUtil {
 		}
 
 		return rows;
-	}	
-	
-	public static boolean writeCell(Sheet sheet, int rownum, int column, String value) {
-		if (null == sheet) {
-			return false;
-		}
-		Row row = null;
-		Cell cell = null;
-		
-		if (null == sheet.getRow(rownum)) {
-			row = sheet.createRow(rownum);
-		}
-		if (null == row.getCell(column)) {
-			cell = row.createCell(column);
-		}
-		cell.setCellValue(value);
-		return true;
 	}
 	
 	public static Object getCellValue(Row row, int column) throws ExeclException {
@@ -115,7 +99,7 @@ public class ExeclUtil {
 		
 		if ((column<IfSheet1.getFirstcolumn()) || (column>IfSheet1.getLastcolumn())) {
 			throw new ExeclException("列数出错!\n第一列:" + IfSheet1.getFirstcolumn()+1 
-										+ "\n第二列:" + IfSheet1.getLastcolumn());
+										+ "\n最后一列:" + IfSheet1.getLastcolumn() + "\n");
 		}
 		Object o = null;
 		

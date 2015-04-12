@@ -99,12 +99,13 @@ public class MainUI implements ActionListener {
 			IfSheet1.setDestPathname(this.destpathname.getText());
 
 			try {
-				if (action.action()) {
-					this.label.setText("生成成功!\n" + "生成路径：" + IfSheet1.getDestPathname());
-				}
-				else {
-					this.label.setText("生成失败！\n");
-				}
+				action.action();
+//				if () {
+//					this.label.setText("生成成功!\n" + "生成路径：" + IfSheet1.getDestPathname());
+//				}
+//				else {
+//					this.label.setText("生成失败！\n");
+//				}
 			} catch (ExeclException e1) {
 				this.label.setText(e1.getMessage());
 			}

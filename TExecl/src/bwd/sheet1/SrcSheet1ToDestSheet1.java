@@ -1,74 +1,17 @@
 package bwd.sheet1;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import bwd.dest.sheet1.OutServiceTypeEnum;
 import bwd.dest.sheet1.OutSheet1;
-import bwd.interfaces.IfSheet1;
-import bwd.src.sheet1.PayEnum;
-import bwd.src.sheet1.ServiceTypeEnum;
-import bwd.src.sheet1.ServiceItem;
-import bwd.src.sheet1.Report;
-import bwd.src.sheet1.SubCompanyEnum;
 import bwd.util.ExeclException;
-import bwd.util.ExeclUtil;
 
-public class Sheet1Action {
+public class SrcSheet1ToDestSheet1 extends SrcSheet1ToReport {
 
-	public Report parseSheet1(Sheet sheet) throws InvalidFormatException, FileNotFoundException, IOException, ExeclException {
-		if (null == sheet) {
-			return null;
-		}
-		
-		ArrayList<Row> rows = ExeclUtil.readRows(sheet, IfSheet1.getFirstrow(), 
-							IfSheet1.getLastrow()<=0?sheet.getLastRowNum()+IfSheet1.getLastrow():IfSheet1.getLastrow());
-		if (null == rows) {
-			return null;
-		}
-		
-		Report sheet1 = new Report();
-		for (Row row : rows) {
-			sheet1.addItem(parseRow(row));
-		}
-		
-		return sheet1;
-	}
-	
-	public ServiceItem parseRow(Row row) throws ExeclException {
-		if (null == row) {
-			return null;
-		}
-		ServiceItem item = new ServiceItem();
-		
-		item.setSubcompany(SubCompanyEnum.getEnum((String)ExeclUtil.getCellValue(row, 0)));
-		item.setServiceType(ServiceTypeEnum.getEnum((String)ExeclUtil.getCellValue(row, 1)));
-		item.setPay(PayEnum.getEnum((String)ExeclUtil.getCellValue(row, 2)));
-		item.setProductName(String.valueOf(ExeclUtil.getCellValue(row, 3)));
-		// 订购次数
-		item.setSubscribeNum((Double)ExeclUtil.getCellValue(row, 4));
-		item.setDeleteNum((Double)ExeclUtil.getCellValue(row, 5));
-		item.setIncreaseNum((Double)ExeclUtil.getCellValue(row, 6));
-		// 订购终端
-		item.setSubscribeTerminalNum((Double)ExeclUtil.getCellValue(row, 7));
-		item.setDeleteTerminalNum((Double)ExeclUtil.getCellValue(row, 8));
-		item.setIncreaseTerminalNum((Double)ExeclUtil.getCellValue(row, 9));
-		item.setIncreaseCycleTerminalNum((Double)ExeclUtil.getCellValue(row, 10));
-		// 点播情况
-		item.setRequestNum((Double)ExeclUtil.getCellValue(row, 11));
-		item.setRequestTerminalNum((Double)ExeclUtil.getCellValue(row, 12));
-		// 在订情况
-		item.setSubscribeLastCycleEndNum((Double)ExeclUtil.getCellValue(row, 13));
-		item.setSubscribeCycleEndNum((Double)ExeclUtil.getCellValue(row, 14));
-		item.setIncreaseCycleNum((Double)ExeclUtil.getCellValue(row, 15));
-		
-		return item;
+	public SrcSheet1ToDestSheet1(Sheet srcSheet) throws ExeclException {
+		super(srcSheet);
 	}
 	
 	private void setMainTitle(Row row) {
@@ -122,42 +65,23 @@ public class Sheet1Action {
 		row.createCell(12).setCellValue(out.getOtherIncomeMap().get(type)==null?0.0:out.getOtherIncomeMap().get(type));
 	}
 	
-	public boolean createOutSheet(Sheet sheet, Report srcSheet) {
-		if ((null == sheet) || (null == srcSheet) || (null == srcSheet.getItems())) {
-			return false;
-		}
+	public void fillOutSheet(Sheet destSheet) {
+
 		int rownum = 0;
 		// 添加主列表标题
-		Row rowTitle = sheet.createRow(rownum++);
+		Row rowTitle = destSheet.createRow(rownum++);
 		setMainTitle(rowTitle);
 		// 添加子列表标题
-		Row rowSubTitle = sheet.createRow(rownum++);
+		Row rowSubTitle = destSheet.createRow(rownum++);
 		setSubTitle(rowSubTitle);
 		// 添加数据
 		OutSheet1 out = new OutSheet1();
-		out.parseServiceItem2Out(srcSheet);
+		out.parseServiceItem2Out(getReport());
 		for (OutServiceTypeEnum serviceType : OutServiceTypeEnum.values()) {
-			Row row = sheet.createRow(rownum++);
+			Row row = destSheet.createRow(rownum++);
 			setLineData(row, out, serviceType);
 		}
 
-		return true;
 	}
 
-//	public Sheet action(Sheet srcSheet, Sheet destSheet) throws InvalidFormatException, FileNotFoundException, IOException, ExeclException {
-//		if (null == srcSheet) {
-//			return null;
-//		}
-//		Report src = parseSheet1(srcSheet);
-//		if (null == src.getItems()) {
-//			return null;
-//		}
-//		
-//		createOutSheet(destSheet, src);
-//		
-//		return destSheet;
-//	}
-
-
-	
 }
