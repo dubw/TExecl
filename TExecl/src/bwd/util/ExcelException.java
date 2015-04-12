@@ -1,6 +1,6 @@
 package bwd.util;
 
-public class ExeclException extends Exception {
+public class ExcelException extends Exception {
 	/**
 	 * 
 	 */
@@ -9,7 +9,7 @@ public class ExeclException extends Exception {
 //	private StringBuilder message = new StringBuilder("");
 	private String message = null;
 	
-	public ExeclException(String msg) {
+	public ExcelException(String msg) {
 		addMessage(msg);
 	}
 	

@@ -15,11 +15,11 @@ import javax.swing.event.CaretListener;
 
 import bwd.action.Action;
 import bwd.interfaces.Sheet1Param;
-import bwd.util.ExeclException;
+import bwd.util.ExcelException;
 
 public class MainUI implements ActionListener {
 
-	private JFrame frame = new JFrame("Execl转换工具 v1.3");
+	private JFrame frame = new JFrame("Excel转换工具 v1.3");
 	private Container c = frame.getContentPane();
 	private JLabel label = new JLabel("HELLO");
 	private JTextField pathname = new JTextField(30);
@@ -106,7 +106,7 @@ public class MainUI implements ActionListener {
 //				else {
 //					this.label.setText("生成失败！\n");
 //				}
-			} catch (ExeclException e1) {
+			} catch (ExcelException e1) {
 				this.label.setText(e1.getMessage());
 			}
 		}

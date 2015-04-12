@@ -6,11 +6,11 @@ import org.apache.poi.ss.util.CellRangeAddress;
 
 import bwd.dest.sheet1.OutServiceTypeEnum;
 import bwd.dest.sheet1.OutSheet1;
-import bwd.util.ExeclException;
+import bwd.util.ExcelException;
 
 public class SrcSheet1ToDestSheet1 extends SrcSheet1ToReport {
 
-	public SrcSheet1ToDestSheet1(Sheet srcSheet) throws ExeclException {
+	public SrcSheet1ToDestSheet1(Sheet srcSheet) throws ExcelException {
 		super(srcSheet);
 	}
 	

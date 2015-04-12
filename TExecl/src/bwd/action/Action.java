@@ -11,8 +11,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import bwd.interfaces.Sheet1Param;
 import bwd.sheet1.SrcSheet1ToDestSheet1;
-import bwd.util.ExeclException;
-import bwd.util.ExeclUtil;
+import bwd.util.ExcelException;
+import bwd.util.ExcelUtil;
 
 /**
  * 所有转换数据的入口类
@@ -24,9 +24,9 @@ public class Action {
 	/**
 	 * 所有转换数据的入口方法
 	 * @return
-	 * @throws ExeclException
+	 * @throws ExcelException
 	 */
-	public void action() throws ExeclException {
+	public void action() throws ExcelException {
 		Workbook srcWb = null;
 		Sheet srcSheet = null;
 		Workbook destWb = null;
@@ -34,18 +34,18 @@ public class Action {
 		
 		try {
 			try {
-				srcWb = ExeclUtil.openExecl(Sheet1Param.getSrcPathname());
+				srcWb = ExcelUtil.openExcel(Sheet1Param.getSrcPathname());
 			} catch (InvalidFormatException | IOException e) {
-				throw new ExeclException("打开execl文件失败！路径为:" + Sheet1Param.getSrcPathname());
+				throw new ExcelException("打开Excel文件失败！路径为:" + Sheet1Param.getSrcPathname());
 			}
 			srcSheet = srcWb.getSheet(Sheet1Param.getSheetname());
 			if (null == srcSheet) {
-				throw new ExeclException("打开sheet页面失败！页面名为:" + Sheet1Param.getSheetname());
+				throw new ExcelException("打开sheet页面失败！页面名为:" + Sheet1Param.getSheetname());
 			}
 			// 创建生成的wb
-			destWb = ExeclUtil.createExecl(Sheet1Param.getDestPathname());
+			destWb = ExcelUtil.createExcel(Sheet1Param.getDestPathname());
 			if (null == destWb) {
-				throw new ExeclException("创建execl文件失败！路径为:" + Sheet1Param.getDestPathname());
+				throw new ExcelException("创建Excel文件失败！路径为:" + Sheet1Param.getDestPathname());
 			}
 			
 			// 生成第一个sheet页
@@ -66,7 +66,7 @@ public class Action {
 			System.out.println(Sheet1Param.getDestPathname());	
 		}
 		catch (IOException e) {
-			throw new ExeclException("读写文件I/O出问题！");
+			throw new ExcelException("读写文件I/O出问题！");
 		}
 		finally {
 			try {
@@ -88,16 +88,16 @@ public class Action {
 	/**
 	 * 创建第一个sheet页面
 	 * @param destwb
-	 * @throws ExeclException 
+	 * @throws ExcelException 
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 * @throws InvalidFormatException 
 	 */
-	private void generateDestSheet1(Workbook destwb, Sheet srcSheet) throws ExeclException {
+	private void generateDestSheet1(Workbook destwb, Sheet srcSheet) throws ExcelException {
 		// 创建生成Excel的sheet1页面
 		Sheet destsheet = destwb.createSheet(Sheet1Param.getDestSheetname());
 		if (null == destsheet) {
-			throw new ExeclException("创建sheet页面失败！页面名为:" + Sheet1Param.getDestSheetname());
+			throw new ExcelException("创建sheet页面失败！页面名为:" + Sheet1Param.getDestSheetname());
 		}
 		SrcSheet1ToDestSheet1 srcSheet1Adaptor = new SrcSheet1ToDestSheet1(srcSheet);
 		srcSheet1Adaptor.fillOutSheet(destsheet);
@@ -113,7 +113,7 @@ public class Action {
 		Action a = new Action();
 		try {
 			a.action();
-		} catch (ExeclException e) {
+		} catch (ExcelException e) {
 			System.out.println(e.getMessage());
 		}
 	}

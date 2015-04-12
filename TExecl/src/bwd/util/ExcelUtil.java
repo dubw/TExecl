@@ -18,21 +18,21 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import bwd.interfaces.Sheet1Param;
 
 /**
- * 包含所有使用的Execl工具
+ * 包含所有使用的Excel工具
  * @author dbw
  *
  */
-public class ExeclUtil {
+public class ExcelUtil {
 
 	/**
-	 * 只用于创建execl表格
+	 * 只用于创建Excel表格
 	 * @param pathname 全路径名,应该以'.xls'或者'.xlsx'结尾
-	 * @return 返回创建的execl对象wb
-	 * @throws ExeclException
+	 * @return 返回创建的Excel对象wb
+	 * @throws ExcelException
 	 */
-	public static Workbook createExecl(String pathname) throws ExeclException {
+	public static Workbook createExcel(String pathname) throws ExcelException {
 		if (null == pathname) {
-			throw new ExeclException("请输入待创建Excel表格的路径名！");
+			throw new ExcelException("请输入待创建Excel表格的路径名！");
 		}
 		Workbook wb = null;
 		
@@ -43,7 +43,7 @@ public class ExeclUtil {
 			wb = new XSSFWorkbook();
 		}
 		else {
-			throw new ExeclException("路径后缀名错误，必须以'.xls'或者'.xlsx'结尾！");
+			throw new ExcelException("路径后缀名错误，必须以'.xls'或者'.xlsx'结尾！");
 		}
 		
 	    return wb;
@@ -52,15 +52,15 @@ public class ExeclUtil {
 	/**
 	 * 用于打开一个已经存在且可读的文件
 	 * @param pathname 全路径名,应该以'.xls'或者'.xlsx'结尾
-	 * @return 返回已读取的execl对象wb
+	 * @return 返回已读取的Excel对象wb
 	 * @throws InvalidFormatException
 	 * @throws IOException
-	 * @throws ExeclException 
+	 * @throws ExcelException 
 	 * @throws FileNotFoundException
 	 */
-	public static Workbook openExecl(String pathname) throws InvalidFormatException, IOException, ExeclException {
+	public static Workbook openExcel(String pathname) throws InvalidFormatException, IOException, ExcelException {
 		if (null == pathname) {
-			throw new ExeclException("没有输入文件路径名！");
+			throw new ExcelException("没有输入文件路径名！");
 		}
 
 		return WorkbookFactory.create(new File(pathname));
@@ -72,14 +72,14 @@ public class ExeclUtil {
 	 * @param firstrow 起始读取行
 	 * @param lastrow 最后读取行
 	 * @return 返回读取的所有行的数据
-	 * @throws ExeclException
+	 * @throws ExcelException
 	 */
-	public static ArrayList<Row> readRows(Sheet sheet, int firstrow, int lastrow) throws ExeclException {
+	public static ArrayList<Row> readRows(Sheet sheet, int firstrow, int lastrow) throws ExcelException {
 		if (null == sheet) {
 			return null;
 		}
 		if ((firstrow < 0) || (firstrow > lastrow)) {
-			throw new ExeclException("读取sheet:"+sheet.getSheetName()+" 页面行数错误!\n"
+			throw new ExcelException("读取sheet:"+sheet.getSheetName()+" 页面行数错误!\n"
 										+ "第一行:" + firstrow + "\n"
 										+ "最后一行:" + lastrow);
 		}
@@ -92,13 +92,13 @@ public class ExeclUtil {
 		return rows;
 	}
 	
-	public static Object getCellValue(Row row, int column) throws ExeclException {
+	public static Object getCellValue(Row row, int column) throws ExcelException {
 		if (null == row) {
 			return null;
 		}
 		
 		if ((column<Sheet1Param.getFirstcolumn()) || (column>Sheet1Param.getLastcolumn())) {
-			throw new ExeclException("列数出错!\n第一列:" + Sheet1Param.getFirstcolumn()+1 
+			throw new ExcelException("列数出错!\n第一列:" + Sheet1Param.getFirstcolumn()+1 
 										+ "\n最后一列:" + Sheet1Param.getLastcolumn() + "\n");
 		}
 		Object o = null;
