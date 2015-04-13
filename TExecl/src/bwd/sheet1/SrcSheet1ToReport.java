@@ -13,7 +13,7 @@ import bwd.src.sheet1.SubCompanyEnum;
 import bwd.util.ExcelException;
 import bwd.util.ExcelUtil;
 
-public class SrcSheet1ToReport {
+public abstract class SrcSheet1ToReport {
 
 	private Report report = null;
 	
@@ -36,6 +36,9 @@ public class SrcSheet1ToReport {
 			this.report = this.parseSrcSheet1(srcSheet);
 		}
 	}
+	
+	public abstract void fillOutSheet(Sheet destSheet);
+
 	
 	private Report parseSrcSheet1(Sheet srcSheet) throws ExcelException {
 		if (null == srcSheet) {

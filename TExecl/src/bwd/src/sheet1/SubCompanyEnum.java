@@ -11,6 +11,7 @@ public enum SubCompanyEnum {
 	NanjingLuhe("南京六合公司"),
 	NanjingPukou("南京浦口公司"),
 	NanjingYuhua("南京雨花广电"),
+	NanjingHonghuazhan("南京红花站"),
 	// 其他地市
 	Changzhou("常州分公司"),
 	Huaian("淮安分公司"),
@@ -85,5 +86,9 @@ public enum SubCompanyEnum {
 			return SubCompanyEnum.XuzhouZhongguang;
 		}
 		return null;
+	}
+	@Override
+	public String toString() {
+		return this.value;
 	}
 }

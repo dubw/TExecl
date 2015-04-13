@@ -14,12 +14,13 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
 import bwd.action.Action;
+import bwd.interfaces.BaseParam;
 import bwd.interfaces.Sheet1Param;
 import bwd.util.ExcelException;
 
 public class MainUI implements ActionListener {
 
-	private JFrame frame = new JFrame("Excel转换工具 v1.3");
+	private JFrame frame = new JFrame("Excel转换工具 v1.4");
 	private Container c = frame.getContentPane();
 	private JLabel label = new JLabel("HELLO");
 	private JTextField pathname = new JTextField(30);
@@ -95,17 +96,11 @@ public class MainUI implements ActionListener {
 			Action action = new Action();
 			//读取页面数据到全局变量中
 			Sheet1Param.setSrcPathname(this.pathname.getText());
-			Sheet1Param.setSheetname(this.sheetName.getText());
+			Sheet1Param.setSrcSheet1Name(this.sheetName.getText());
 			Sheet1Param.setDestPathname(this.destpathname.getText());
 
 			try {
 				action.action();
-//				if () {
-//					this.label.setText("生成成功!\n" + "生成路径：" + IfSheet1.getDestPathname());
-//				}
-//				else {
-//					this.label.setText("生成失败！\n");
-//				}
 			} catch (ExcelException e1) {
 				this.label.setText(e1.getMessage());
 			}

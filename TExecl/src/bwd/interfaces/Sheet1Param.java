@@ -3,14 +3,13 @@ package bwd.interfaces;
 public final class Sheet1Param {
 
 	private static String srcPathname = null; // 源文件全路径名,包括文件名和后缀
-	private static String srcSheet1 = "Report"; 
 	private static String destPathname = null; // 目标文件存放全路径,包括文件名和后缀
-	private static String destSheetname = "out";
+	private static String srcSheet1Name = "Report"; 
+	private static String destSheetName = "out";
 	private static int firstrow = 3;
 	private static int lastrow = -2;
 	private static int firstcolumn = 0;
 	private static int lastcolumn = 15;
-	
 	/**
 	 * @return the srcPathname
 	 */
@@ -24,18 +23,6 @@ public final class Sheet1Param {
 		Sheet1Param.srcPathname = srcPathname;
 	}
 	/**
-	 * @return the sheetname
-	 */
-	public static String getSheetname() {
-		return srcSheet1;
-	}
-	/**
-	 * @param sheetname the sheetname to set
-	 */
-	public static void setSheetname(String sheetname) {
-		Sheet1Param.srcSheet1 = sheetname;
-	}
-	/**
 	 * @return the destPathname
 	 */
 	public static String getDestPathname() {
@@ -47,11 +34,29 @@ public final class Sheet1Param {
 	public static void setDestPathname(String destPathname) {
 		Sheet1Param.destPathname = destPathname;
 	}
-	public static String getDestSheetname() {
-		return destSheetname;
+	/**
+	 * @return the srcSheet1Name
+	 */
+	public static String getSrcSheet1Name() {
+		return srcSheet1Name;
 	}
-	public static void setDestSheetname(String destSheetname) {
-		Sheet1Param.destSheetname = destSheetname;
+	/**
+	 * @param srcSheet1Name the srcSheet1Name to set
+	 */
+	public static void setSrcSheet1Name(String srcSheet1Name) {
+		Sheet1Param.srcSheet1Name = srcSheet1Name;
+	}
+	/**
+	 * @return the destSheetName
+	 */
+	public static String getDestSheetName() {
+		return destSheetName;
+	}
+	/**
+	 * @param destSheetName the destSheetName to set
+	 */
+	public static void setDestSheetName(String destSheetName) {
+		Sheet1Param.destSheetName = destSheetName;
 	}
 	/**
 	 * @return the firstrow
@@ -101,8 +106,6 @@ public final class Sheet1Param {
 	public static void setLastcolumn(int lastcolumn) {
 		Sheet1Param.lastcolumn = lastcolumn;
 	}
-
-
 
 
 }

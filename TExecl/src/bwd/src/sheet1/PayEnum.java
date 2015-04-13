@@ -36,4 +36,8 @@ public enum PayEnum {
 		
 		return null;
 	}
+	@Override
+	public String toString() {
+		return this.value;
+	}
 }
