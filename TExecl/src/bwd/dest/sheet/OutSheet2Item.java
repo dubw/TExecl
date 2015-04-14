@@ -1,4 +1,4 @@
-package bwd.dest.sheet2;
+package bwd.dest.sheet;
 
 import bwd.src.sheet1.PayEnum;
 import bwd.src.sheet1.SubCompanyEnum;

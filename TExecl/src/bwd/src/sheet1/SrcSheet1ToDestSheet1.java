@@ -1,21 +1,20 @@
-package bwd.sheet1;
+package bwd.src.sheet1;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
 
-import bwd.dest.sheet1.OutSheet1TypeEnum;
-import bwd.dest.sheet1.OutSheet1;
-import bwd.src.sheet1.PayEnum;
-import bwd.src.sheet1.Report;
-import bwd.src.sheet1.ServiceItem;
-import bwd.src.sheet1.SubCompanyEnum;
+import bwd.action.ISrcSheet2DestSheet;
+import bwd.dest.sheet.OutSheet1;
+import bwd.dest.sheet.OutSheet1TypeEnum;
 import bwd.util.ExcelException;
 
-public class SrcSheet1ToDestSheet1 extends SrcSheet1ToReport {
+public class SrcSheet1ToDestSheet1 implements ISrcSheet2DestSheet {
 
+	SrcSheet1ToReport src2report;
+	
 	public SrcSheet1ToDestSheet1(Sheet srcSheet) throws ExcelException {
-		super(srcSheet);
+		src2report = new SrcSheet1ToReport(srcSheet);
 	}
 	
 	@Override
@@ -69,7 +68,7 @@ public class SrcSheet1ToDestSheet1 extends SrcSheet1ToReport {
 	private OutSheet1 parseReport2OutSheet1() {
 		OutSheet1 out = new OutSheet1();
 		
-		for (ServiceItem item : getReport().getItems()) {
+		for (ServiceItem item : src2report.getReport().getItems()) {
 			OutSheet1TypeEnum outItem = OutSheet1TypeEnum.getEnum(item.getServiceType().getServiceName());
 			if (null == outItem) {
 				continue;

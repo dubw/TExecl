@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import bwd.interfaces.Sheet1Param;
+import bwd.param.Sheet1Param;
 
 /**
  * 包含所有使用的Excel工具

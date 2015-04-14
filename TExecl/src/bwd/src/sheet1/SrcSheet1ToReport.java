@@ -1,21 +1,23 @@
-package bwd.sheet1;
+package bwd.src.sheet1;
 
 import java.util.ArrayList;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import bwd.interfaces.Sheet1Param;
-import bwd.src.sheet1.PayEnum;
-import bwd.src.sheet1.Report;
-import bwd.src.sheet1.ServiceItem;
-import bwd.src.sheet1.ServiceTypeEnum;
-import bwd.src.sheet1.SubCompanyEnum;
+import bwd.param.Sheet1Param;
 import bwd.util.ExcelException;
 import bwd.util.ExcelUtil;
 
-public abstract class SrcSheet1ToReport {
+public class SrcSheet1ToReport {
 
 	private Report report = null;
+	
+	public SrcSheet1ToReport(Sheet srcSheet) throws ExcelException {
+		if (null == report) {
+			this.report = this.parseSrcSheet1(srcSheet);
+		}
+	}
 	
 	/**
 	 * @return the report
@@ -31,19 +33,7 @@ public abstract class SrcSheet1ToReport {
 		this.report = report;
 	}
 
-	public SrcSheet1ToReport(Sheet srcSheet) throws ExcelException {
-		if (null == this.report) {
-			this.report = this.parseSrcSheet1(srcSheet);
-		}
-	}
-	
-	public abstract void fillOutSheet(Sheet destSheet);
-
-	
 	private Report parseSrcSheet1(Sheet srcSheet) throws ExcelException {
-		if (null == srcSheet) {
-			return null;
-		}
 		
 		ArrayList<Row> rows = ExcelUtil.readRows(srcSheet, Sheet1Param.getFirstrow(), 
 							Sheet1Param.getLastrow()<=0?srcSheet.getLastRowNum()+Sheet1Param.getLastrow():Sheet1Param.getLastrow());

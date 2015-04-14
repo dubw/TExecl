@@ -1,4 +1,4 @@
-package bwd.interfaces;
+package bwd.param;
 
 public class BaseParam {
 

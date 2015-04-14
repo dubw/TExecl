@@ -1,21 +1,20 @@
-package bwd.sheet1;
+package bwd.src.sheet1;
 
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.util.CellRangeAddress;
 
-import bwd.dest.sheet2.OutSheet2;
-import bwd.dest.sheet2.OutSheet2Item;
-import bwd.src.sheet1.PayEnum;
-import bwd.src.sheet1.ServiceItem;
-import bwd.src.sheet1.SubCompanyEnum;
+import bwd.action.ISrcSheet2DestSheet;
+import bwd.dest.sheet.OutSheet2;
+import bwd.dest.sheet.OutSheet2Item;
 import bwd.util.ExcelException;
 
-public class SrcSheet1ToDestSheet2 extends SrcSheet1ToReport{
+public class SrcSheet1ToDestSheet2 implements ISrcSheet2DestSheet{
+
+	SrcSheet1ToReport src2report;
 
 	public SrcSheet1ToDestSheet2(Sheet srcSheet) throws ExcelException {
-		super(srcSheet);
+		src2report = new SrcSheet1ToReport(srcSheet);
 	}
 
 	@Override
@@ -30,9 +29,7 @@ public class SrcSheet1ToDestSheet2 extends SrcSheet1ToReport{
 		row = destSheet.createRow(rownum++);
 		row.createCell(1).setCellValue("南京地区");
 		row.getSheet().addMergedRegion(new CellRangeAddress(1, 8, 1, 1));
-		row.createCell(9).setCellFormula("SUM(I1:I8)");
-		Cell cellsum1 = row.createCell(9);
-		cellsum1.setCellValue(0.0);
+		row.createCell(9).setCellFormula("SUM(I2:I9)");
 		fillCommons(row, out2.getNjSubCompany());
 		row.getSheet().addMergedRegion(new CellRangeAddress(1, 8, 9, 9));
 		// 备注
@@ -63,8 +60,8 @@ public class SrcSheet1ToDestSheet2 extends SrcSheet1ToReport{
 		row = destSheet.createRow(rownum++);
 		row.createCell(1).setCellValue("地市公司");
 		row.getSheet().addMergedRegion(new CellRangeAddress(9, 17, 1, 1));
-		row.createCell(9).setCellFormula("SUM(I9:I17)");
-		fillCommons(row, out2.getNjpkCompany());
+		row.createCell(9).setCellFormula("SUM(I10:I18)");
+		fillCommons(row, out2.getTzSubCompany());
 		row.getSheet().addMergedRegion(new CellRangeAddress(9, 17, 9, 9));
 		// 10.南通
 		row = destSheet.createRow(rownum++);
@@ -135,7 +132,7 @@ public class SrcSheet1ToDestSheet2 extends SrcSheet1ToReport{
 	private OutSheet2 parseReport2OutSheet2() {
 		OutSheet2 out2 = new OutSheet2();
 		
-		for (ServiceItem item : getReport().getItems()) {
+		for (ServiceItem item : src2report.getReport().getItems()) {
 			parseItem(out2, item);			
 		}
 		

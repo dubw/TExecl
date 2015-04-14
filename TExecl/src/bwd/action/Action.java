@@ -9,11 +9,15 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 
-import bwd.interfaces.Sheet1Param;
-import bwd.interfaces.Sheet2Param;
-import bwd.sheet1.SrcSheet1ToDestSheet1;
-import bwd.sheet1.SrcSheet1ToReport;
-import bwd.sheet1.SrcSheet1ToDestSheet2;
+
+
+
+
+import bwd.param.Sheet1Param;
+import bwd.param.Sheet2Param;
+import bwd.src.sheet1.SrcSheet1ToDestSheet1;
+import bwd.src.sheet1.SrcSheet1ToDestSheet2;
+import bwd.src.sheet1.SrcSheet1ToReport;
 import bwd.util.ExcelException;
 import bwd.util.ExcelUtil;
 
@@ -100,7 +104,7 @@ public class Action {
 		if (null == destsheet) {
 			throw new ExcelException("创建sheet页面失败！页面名为:" + Sheet1Param.getDestSheetName());
 		}
-		SrcSheet1ToReport srcSheet1Adaptor = new SrcSheet1ToDestSheet1(srcSheet);
+		ISrcSheet2DestSheet srcSheet1Adaptor = new SrcSheet1ToDestSheet1(srcSheet);
 		srcSheet1Adaptor.fillOutSheet(destsheet);
 	}
 
@@ -116,7 +120,7 @@ public class Action {
 		if (null == destsheet) {
 			throw new ExcelException("创建sheet页面失败！页面名为:" + Sheet2Param.getDestSheetName());
 		}
-		SrcSheet1ToReport srcSheet1Adaptor = new SrcSheet1ToDestSheet2(srcSheet);
+		ISrcSheet2DestSheet srcSheet1Adaptor = new SrcSheet1ToDestSheet2(srcSheet);
 		srcSheet1Adaptor.fillOutSheet(destsheet);
 	}
 

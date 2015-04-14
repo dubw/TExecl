@@ -14,8 +14,8 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
 import bwd.action.Action;
-import bwd.interfaces.BaseParam;
-import bwd.interfaces.Sheet1Param;
+import bwd.param.BaseParam;
+import bwd.param.Sheet1Param;
 import bwd.util.ExcelException;
 
 public class MainUI implements ActionListener {

@@ -1,11 +1,11 @@
-package bwd.interfaces;
+package bwd.param;
 
 public final class Sheet1Param {
 
 	private static String srcPathname = null; // 源文件全路径名,包括文件名和后缀
 	private static String destPathname = null; // 目标文件存放全路径,包括文件名和后缀
 	private static String srcSheet1Name = "Report"; 
-	private static String destSheetName = "out";
+	private static String destSheetName = "sheet1";
 	private static int firstrow = 3;
 	private static int lastrow = -2;
 	private static int firstcolumn = 0;

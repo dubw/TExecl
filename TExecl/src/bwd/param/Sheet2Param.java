@@ -1,8 +1,8 @@
-package bwd.interfaces;
+package bwd.param;
 
 public class Sheet2Param {
 
-	public static String destSheetName = null;
+	public static String destSheetName = "sheet2";
 
 	public static String getDestSheetName() {
 		return destSheetName;
