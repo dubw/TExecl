@@ -15,8 +15,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import bwd.param.Sheet1Param;
-
 /**
  * 包含所有使用的Excel工具
  * @author dbw
@@ -97,10 +95,6 @@ public class ExcelUtil {
 			return null;
 		}
 		
-		if ((column<Sheet1Param.getFirstcolumn()) || (column>Sheet1Param.getLastcolumn())) {
-			throw new ExcelException("列数出错!\n第一列:" + Sheet1Param.getFirstcolumn()+1 
-										+ "\n最后一列:" + Sheet1Param.getLastcolumn() + "\n");
-		}
 		Object o = null;
 		
 		Cell cell = row.getCell(column);

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
-import bwd.param.Sheet1Param;
+import bwd.param.Param;
 import bwd.util.ExcelException;
 import bwd.util.ExcelUtil;
 
@@ -35,8 +35,8 @@ public class SrcSheet1ToReport {
 
 	private Report parseSrcSheet1(Sheet srcSheet) throws ExcelException {
 		
-		ArrayList<Row> rows = ExcelUtil.readRows(srcSheet, Sheet1Param.getFirstrow(), 
-							Sheet1Param.getLastrow()<=0?srcSheet.getLastRowNum()+Sheet1Param.getLastrow():Sheet1Param.getLastrow());
+		ArrayList<Row> rows = ExcelUtil.readRows(srcSheet, Param.FIRSTROW, 
+													srcSheet.getLastRowNum()+Param.LASTROW);
 		if (null == rows) {
 			return null;
 		}
