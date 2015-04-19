@@ -1,5 +1,8 @@
 package bwd.src.sheet1;
 
+import bwd.param.Param;
+import bwd.util.ExcelException;
+
 public enum ServiceTypeEnum {
 
 	// 视频
@@ -9,6 +12,7 @@ public enum ServiceTypeEnum {
 	GGLY("果果乐园-包月"),
 	YFJY("义方教育"),
 	ZXYQ("自学引擎"),
+	TSLY("图书乐园"),
 	// 娱乐
 	CHYYBY("彩虹音乐-包月"),
 	YYXBY("云游戏-包月"),
@@ -42,9 +46,9 @@ public enum ServiceTypeEnum {
 		return this.value;
 	}
 	
-	public static ServiceTypeEnum getEnum(String value) {
+	public static ServiceTypeEnum getEnum(String value) throws ExcelException {
 		if (null == value) {
-			return null;
+			throw new NullPointerException();
 		}
 		if("百科学苑".equals(value)) {
 			return ServiceTypeEnum.BKXY;
@@ -57,6 +61,9 @@ public enum ServiceTypeEnum {
 		}
 		else if("自学引擎".equals(value)) {
 			return ServiceTypeEnum.ZXYQ;
+		}
+		else if ("图书乐园".equals(value)) {
+			return ServiceTypeEnum.TSLY;
 		}
 		else if("彩虹音乐-包月".equals(value)) {
 			return ServiceTypeEnum.CHYYBY;
@@ -110,7 +117,7 @@ public enum ServiceTypeEnum {
 			return ServiceTypeEnum.HLWSPDB;
 		}
 		
-		return null;	
+		throw new ExcelException("解析 " + Param.getSrcSheet1Name() + "业务类型错误！value: " + value);
 	}
 	
 	

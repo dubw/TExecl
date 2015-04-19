@@ -7,6 +7,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import bwd.action.ISrcSheet2DestSheet;
 import bwd.dest.sheet.OutSheet2;
 import bwd.dest.sheet.OutSheet2Item;
+import bwd.dest.sheet.OutSheet2SubCompanyEnum;
 import bwd.util.ExcelException;
 
 public class SrcSheet1ToDestSheet2 implements ISrcSheet2DestSheet{
@@ -18,91 +19,47 @@ public class SrcSheet1ToDestSheet2 implements ISrcSheet2DestSheet{
 	}
 
 	@Override
-	public void fillOutSheet(Sheet destSheet) {
+	public void fillOutSheet(Sheet destSheet) throws ExcelException {
 		int rownum = 0;
 		// 添加主列表标题
 		Row row = destSheet.createRow(rownum++);
 		setFormTitle(row);
 		// 添加数据
 		OutSheet2 out2 = parseReport2OutSheet2();
-		// 1.南京分公司
-		row = destSheet.createRow(rownum++);
-		row.createCell(1).setCellValue("南京地区");
-		row.getSheet().addMergedRegion(new CellRangeAddress(1, 8, 1, 1));
-		row.createCell(9).setCellFormula("SUM(I2:I9)");
-		fillCommons(row, out2.getNjSubCompany());
-		row.getSheet().addMergedRegion(new CellRangeAddress(1, 8, 9, 9));
-		// 备注
-		row.getSheet().addMergedRegion(new CellRangeAddress(1, 18, 10, 10));
-		// 2.南京江宁公司
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNjjnCompany());
-		// 3.南京浦口公司
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNjpkCompany());
-		// 4.南京溧水公司
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNjlsCompany());
-		// 5.南京雨花广电
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNjyhgd());
-		// 6.南京六合公司
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNjlhCompany());
-		// 7.南京高淳公司
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNjgcCompany());
-		// 8.南京红花站
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNjhhz());
-		//--------------------------------//
-		// 9.泰州分公司
-		row = destSheet.createRow(rownum++);
-		row.createCell(1).setCellValue("地市公司");
-		row.getSheet().addMergedRegion(new CellRangeAddress(9, 17, 1, 1));
-		row.createCell(9).setCellFormula("SUM(I10:I18)");
-		fillCommons(row, out2.getTzSubCompany());
-		row.getSheet().addMergedRegion(new CellRangeAddress(9, 17, 9, 9));
-		// 10.南通
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getNtSubCompany());
-		// 11.徐州
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getXzSubCompany());
-		// 12.宿迁
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getSqSubCompany());
-		// 13.淮安
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getHaSubCompany());
-		// 14.连云港
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getLygCompanyubCompany());
-		// 15.盐城
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getYcSubCompany());
-		// 16.镇江
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getZjSubCompany());
-		// 17.常州
-		row = destSheet.createRow(rownum++);
-		fillCommons(row, out2.getCzSubCompany());
-		
+		for (OutSheet2SubCompanyEnum e : OutSheet2SubCompanyEnum.values()) {
+			row = destSheet.createRow(rownum++);
+			if ("南京分公司".equals(e.toString())) {
+				row.createCell(1).setCellValue("南京地区");
+				row.getSheet().addMergedRegion(new CellRangeAddress(1, 8, 1, 1));
+				row.createCell(9).setCellFormula("SUM(I2:I9)");
+				row.getSheet().addMergedRegion(new CellRangeAddress(1, 8, 9, 9));
+				// 备注
+				row.getSheet().addMergedRegion(new CellRangeAddress(1, 18, 10, 10));
+			}
+			else if ("泰州分公司".equals(e.toString())) {
+				row.createCell(1).setCellValue("地市公司");
+				row.getSheet().addMergedRegion(new CellRangeAddress(9, 17, 1, 1));
+				row.createCell(9).setCellFormula("SUM(I10:I18)");
+				row.getSheet().addMergedRegion(new CellRangeAddress(9, 17, 9, 9));
+			}
+			OutSheet2Item item = out2.getOutSheet2Item(e);
+			fillRow(row, item);
+		}	
 		// 添加表格底部总和
 		row = destSheet.createRow(rownum++);
 		setFormFooter(row);
 	}
 	private void setFormFooter(Row row) {
 		row.createCell(1).setCellValue("总计");
-		row.createCell(4).setCellFormula("SUM(E1:E17)");
-		row.createCell(5).setCellFormula("SUM(F1:F17)");
-		row.createCell(6).setCellFormula("SUM(G1:G17)");
-		row.createCell(7).setCellFormula("SUM(H1:H17)");
-		row.createCell(8).setCellFormula("SUM(I1:I17)");
-		row.createCell(9).setCellFormula("SUM(J1:J17)");
+		row.createCell(4).setCellFormula("SUM(E2:E18)");
+		row.createCell(5).setCellFormula("SUM(F2:F18)");
+		row.createCell(6).setCellFormula("SUM(G2:G18)");
+		row.createCell(7).setCellFormula("SUM(H2:H18)");
+		row.createCell(8).setCellFormula("SUM(I2:I18)");
+		row.createCell(9).setCellFormula("SUM(J2:J18)");
 	}
 
-	private void fillCommons(Row row, OutSheet2Item item) {		
+	private void fillRow(Row row, OutSheet2Item item) {		
 		row.createCell(2).setCellValue(item.getSubCompany().toString());
 		row.createCell(3).setCellValue(item.getPayEnum().toString());
 		row.createCell(4).setCellValue(item.getSubscribeNum());
@@ -129,16 +86,32 @@ public class SrcSheet1ToDestSheet2 implements ISrcSheet2DestSheet{
 		row.createCell(10).setCellValue("备注");
 	}
 
-	private OutSheet2 parseReport2OutSheet2() {
+	private OutSheet2 parseReport2OutSheet2() throws ExcelException {
 		OutSheet2 out2 = new OutSheet2();
 		
 		for (ServiceItem item : src2report.getReport().getItems()) {
-			parseItem(out2, item);			
+			OutSheet2SubCompanyEnum e = OutSheet2SubCompanyEnum.getEnum(item.getSubcompany().toString());
+			if (PayEnum.Yewudinggou == item.getPay()) {
+				out2.addOutSheet2ItemSubscribeNum(e, item.getSubscribeNum());
+				out2.addOutSheet2ItemDeleteNum(e, item.getDeleteNum());
+				out2.addOutSheet2ItemIncreaseTerminalNum(e, item.getIncreaseTerminalNum());
+				out2.addOutSheet2ItemSubscribeCycleEndNum(e, item.getSubscribeCycleEndNum());
+			}
+			else if (PayEnum.Xiaofei == item.getPay()) {
+				out2.addOutSheet2ItemRevenue(e, item.getSubscribeNum());
+			}
 		}
 		
 		return out2;
-	}	
+	}
+/*
 	private void parseItem(OutSheet2 out2, ServiceItem item) {
+		OutSheet2SubCompanyEnum e = OutSheet2SubCompanyEnum.getEnum(item.getSubcompany().toString());
+		OutSheet2Item outItem = out2.getOutSheet2Item(e);
+		if (PayEnum.Yewudinggou == item.getPay()) {
+			
+		}
+		
 		if (SubCompanyEnum.Nanjing == item.getSubcompany()) {
 			if (PayEnum.Yewudinggou == item.getPay()) {
 				OutSheet2Item out2Item = out2.getNjSubCompany();
@@ -399,6 +372,6 @@ public class SrcSheet1ToDestSheet2 implements ISrcSheet2DestSheet{
 		}
 
 	}
-	
+	*/
 }
 

@@ -50,7 +50,7 @@ public class SrcSheet1ToReport {
 	}
 	private ServiceItem parseRow(Row row) throws ExcelException {
 		if (null == row) {
-			return null;
+			throw new NullPointerException();
 		}
 		ServiceItem item = new ServiceItem();
 		

@@ -18,7 +18,7 @@ public class SrcSheet1ToDestSheet1 implements ISrcSheet2DestSheet {
 	}
 	
 	@Override
-	public void fillOutSheet(Sheet destSheet) {
+	public void fillOutSheet(Sheet destSheet) throws ExcelException {
 
 		int rownum = 0;
 		// 添加主列表标题
@@ -65,7 +65,7 @@ public class SrcSheet1ToDestSheet1 implements ISrcSheet2DestSheet {
 		row.createCell(12).setCellValue("地市公司");		
 	}
 	
-	private OutSheet1 parseReport2OutSheet1() {
+	private OutSheet1 parseReport2OutSheet1() throws ExcelException {
 		OutSheet1 out = new OutSheet1();
 		
 		for (ServiceItem item : src2report.getReport().getItems()) {

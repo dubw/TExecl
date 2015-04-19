@@ -6,7 +6,6 @@ public class ExcelException extends Exception {
 	 */
 	private static final long serialVersionUID = -2811721416762274650L;
 
-//	private StringBuilder message = new StringBuilder("");
 	private String message = null;
 	
 	public ExcelException(String msg) {

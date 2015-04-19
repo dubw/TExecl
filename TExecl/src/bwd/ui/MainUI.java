@@ -529,14 +529,12 @@ public class MainUI extends javax.swing.JFrame {
 
 			Param.setSrcPathname(this.jtf_srcPathname.getText().trim());
 			Param.setSrcSheet1Name(this.jtf_srcSheet1name.getText().trim());
-			Param.setDestPathname(this.jtf_destPath.getText().trim() + "\\"
-					+ this.jtf_destFilename.getText().trim());
+			Param.setDestPathname(this.jtf_destPath.getText().trim(), this.jtf_destFilename.getText().trim());
 			Param.setDestSheet1Name(this.jtf_destSheet1name.getText().trim());
 			Param.setDestSheet2Name(this.jtf_destSheet2name.getText().trim());
 
 			new Action().action();
-			this.jtp_showInfo.setText("生成成功！\r\n" + "生成文件路径为："
-					+ Param.getDestPathname());
+			this.jtp_showInfo.setText("生成成功！\r\n" + "生成文件路径为：" + Param.getDestPathname());
 		} catch (ExcelException e1) {
 			this.jtp_showInfo.setText(e1.getMessage());
 		}

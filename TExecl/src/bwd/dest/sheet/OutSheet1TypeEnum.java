@@ -1,5 +1,8 @@
 package bwd.dest.sheet;
 
+import bwd.param.Param;
+import bwd.util.ExcelException;
+
 
 public enum OutSheet1TypeEnum {
 
@@ -12,6 +15,7 @@ public enum OutSheet1TypeEnum {
 	GGLY("果果乐园"),//("果果乐园-包月"),
 	YFJY("义方教育"),
 	ZXYQ("自学引擎"),
+	TSLY("图书乐园"),
 	// 娱乐
 	CHYY("彩虹音乐"),
 	YYX("云游戏"),
@@ -36,9 +40,9 @@ public enum OutSheet1TypeEnum {
 		return this.value;
 	}
 	
-	public static OutSheet1TypeEnum getEnum(String value) {
+	public static OutSheet1TypeEnum getEnum(String value) throws ExcelException {
 		if (null == value) {
-			return null;
+			throw new ExcelException("OutSheet1TypeEnum error!");
 		}
 		
 		if ("互联网视频-包月".equals(value)) {
@@ -64,6 +68,9 @@ public enum OutSheet1TypeEnum {
 		}
 		else if("自学引擎".equals(value)) {
 			return OutSheet1TypeEnum.ZXYQ;
+		}
+		else if ("图书乐园".equals(value)) {
+			return OutSheet1TypeEnum.TSLY;
 		}
 		else if("彩虹音乐-包月".equals(value)) {
 			return OutSheet1TypeEnum.CHYY;
@@ -105,7 +112,7 @@ public enum OutSheet1TypeEnum {
 			return OutSheet1TypeEnum.TQZX;
 		}
 		
-		return null;	
+		throw new ExcelException("OutSheet1TypeEnum error! Source sheet name " + Param.getSrcSheet1Name() + "doesn't contains value: " + value);	
 	}
 	
 	

@@ -1,11 +1,10 @@
 package bwd.dest.sheet;
 
 import bwd.src.sheet1.PayEnum;
-import bwd.src.sheet1.SubCompanyEnum;
 
 public class OutSheet2Item {
 
-	private SubCompanyEnum subCompany;
+	private OutSheet2SubCompanyEnum subCompany;
 	private final PayEnum payEnum = PayEnum.Yewudinggou;
 	private Double subscribeNum = 0.0;
 	private Double deleteNum = 0.0;
@@ -13,19 +12,19 @@ public class OutSheet2Item {
 	private Double subscribeCycleEndNum = 0.0;
 	private Double revenue = 0.0;
 	
-	public OutSheet2Item(SubCompanyEnum e) {
+	public OutSheet2Item(OutSheet2SubCompanyEnum e) {
 		setSubCompany(e);
 	}
 	/**
 	 * @return the subCompany
 	 */
-	public SubCompanyEnum getSubCompany() {
+	public OutSheet2SubCompanyEnum getSubCompany() {
 		return subCompany;
 	}
 	/**
 	 * @param subCompany the subCompany to set
 	 */
-	public void setSubCompany(SubCompanyEnum subCompany) {
+	public void setSubCompany(OutSheet2SubCompanyEnum subCompany) {
 		this.subCompany = subCompany;
 	}
 	/**

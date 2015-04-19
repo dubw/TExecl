@@ -24,6 +24,9 @@ public final class Param {
 	public static void setDestPathname(String destPathname) {
 		Param.destPathname = destPathname;
 	}
+	public static void setDestPathname(String destPath, String destname) {
+		Param.destPathname = destPath + "\\" + destname;
+	}
 	public static String getSrcSheet1Name() {
 		return srcSheet1Name;
 	}
