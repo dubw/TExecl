@@ -1,29 +1,16 @@
 package bwd.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ExcelException extends Exception {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2811721416762274650L;
 
-	private String message = null;
-	
 	public ExcelException(String msg) {
-		addMessage(msg);
+		super(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " : \r\n" + msg);
 	}
 	
-	public String getMessage() {
-		return message;
-	}
-	
-	public void addMessage(String msg) {
-		//this.message.append(msg + "\n");
-		this.message = msg;
-	}
-
-	
-	public static void main(String[] args) {
-		
-	}
-
 }

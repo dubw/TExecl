@@ -6,6 +6,9 @@ package bwd.ui;
  * and open the template in the editor.
  */
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -496,28 +499,24 @@ public class MainUI extends javax.swing.JFrame {
 	}// </editor-fold>
 
 	private void btn_srcChooseActionPerformed(java.awt.event.ActionEvent evt) {
-		JFileChooser jfc = new JFileChooser();
-		jfc.setDialogTitle("请选择源文件");
-		jfc.addChoosableFileFilter(new FileNameExtensionFilter("Excel格式",
+		
+		src_jfc.setDialogTitle("请选择源文件");
+		src_jfc.addChoosableFileFilter(new FileNameExtensionFilter("Excel格式(xls,xlsx)",
 				"xls", "xlsx"));
-		if (JFileChooser.APPROVE_OPTION == jfc.showOpenDialog(this)) {
-			this.jtf_srcPathname.setText(jfc.getSelectedFile()
-					.getAbsolutePath());
-			// System.out.println("打开文件路径为：" +
-			// jfc.getSelectedFile().getAbsolutePath());
+		if (JFileChooser.APPROVE_OPTION == src_jfc.showOpenDialog(this)) {
+			this.jtf_srcPathname.setText(src_jfc.getSelectedFile().getAbsolutePath());
+			src_jfc.setCurrentDirectory(src_jfc.getSelectedFile());
 		}
 	}
 
 	private void btn_destChooseActionPerformed(java.awt.event.ActionEvent evt) {
-		JFileChooser jfc = new JFileChooser();
-		jfc.setDialogTitle("请选择目标文件夹");
-		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		if (JFileChooser.APPROVE_OPTION == jfc.showOpenDialog(this)) {
-			if (jfc.getSelectedFile().isDirectory()) {
-				this.jtf_destPath.setText(jfc.getSelectedFile()
-						.getAbsolutePath());
-				// System.out.println("打开文件路径为：" +
-				// jfc.getSelectedFile().getAbsolutePath());
+
+		dest_jfc.setDialogTitle("请选择目标文件夹");
+		dest_jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		if (JFileChooser.APPROVE_OPTION == dest_jfc.showOpenDialog(this)) {
+			if (dest_jfc.getSelectedFile().isDirectory()) {
+				this.jtf_destPath.setText(dest_jfc.getSelectedFile().getAbsolutePath());
+				dest_jfc.setCurrentDirectory(dest_jfc.getSelectedFile());
 			}
 		}
 	}
@@ -534,7 +533,8 @@ public class MainUI extends javax.swing.JFrame {
 			Param.setDestSheet2Name(this.jtf_destSheet2name.getText().trim());
 
 			new Action().action();
-			this.jtp_showInfo.setText("生成成功！\r\n" + "生成文件路径为：" + Param.getDestPathname());
+			this.jtp_showInfo.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " ： \r\n"
+										+ "生成成功！\r\n" + "生成文件路径为：" + Param.getDestPathname());
 		} catch (ExcelException e1) {
 			this.jtp_showInfo.setText(e1.getMessage());
 		}
@@ -647,5 +647,8 @@ public class MainUI extends javax.swing.JFrame {
 	private javax.swing.JTextField jtf_srcSheet1name;
 	private javax.swing.JTextPane jtp_showInfo;
 	// End of variables declaration
+	
+	private JFileChooser src_jfc = new JFileChooser();
+	private JFileChooser dest_jfc = new JFileChooser();
 
 }
