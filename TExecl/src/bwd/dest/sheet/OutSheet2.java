@@ -36,7 +36,6 @@ public class OutSheet2 {
 		}
 		OutSheet2Item item = outSheet2Items.get(subcompany);
 		item.setSubscribeNum(item.getSubscribeNum() + subscribeNum);
-//		outSheet2Items.put(subcompany, item);
 	}
 	public void addOutSheet2ItemDeleteNum(OutSheet2SubCompanyEnum subcompany, Double deleteNum) throws ExcelInnerException {
 		if (!outSheet2Items.containsKey(subcompany)) {
@@ -44,7 +43,6 @@ public class OutSheet2 {
 		}
 		OutSheet2Item item = outSheet2Items.get(subcompany);
 		item.setDeleteNum(item.getDeleteNum() + deleteNum);
-//		outSheet2Items.put(subcompany, item);
 	}
 	public void addOutSheet2ItemIncreaseTerminalNum(OutSheet2SubCompanyEnum subcompany, Double increaseTerminalNum) throws ExcelInnerException {
 		if (!outSheet2Items.containsKey(subcompany)) {
@@ -52,7 +50,6 @@ public class OutSheet2 {
 		}
 		OutSheet2Item item = outSheet2Items.get(subcompany);
 		item.setIncreaseTerminalNum(item.getIncreaseTerminalNum() + increaseTerminalNum);
-//		outSheet2Items.put(subcompany, item);
 	}
 	public void addOutSheet2ItemSubscribeCycleEndNum(OutSheet2SubCompanyEnum subcompany, Double subscribeCycleEndNum) throws ExcelInnerException {
 		if (!outSheet2Items.containsKey(subcompany)) {
@@ -60,7 +57,6 @@ public class OutSheet2 {
 		}
 		OutSheet2Item item = outSheet2Items.get(subcompany);
 		item.setSubscribeCycleEndNum(item.getSubscribeCycleEndNum() + subscribeCycleEndNum);
-//		outSheet2Items.put(subcompany, item);
 	}
 	public void addOutSheet2ItemRevenue(OutSheet2SubCompanyEnum subcompany, Double revenue) throws ExcelInnerException {
 		if (!outSheet2Items.containsKey(subcompany)) {
@@ -68,7 +64,6 @@ public class OutSheet2 {
 		}
 		OutSheet2Item item = outSheet2Items.get(subcompany);
 		item.setRevenue(item.getRevenue() + revenue);
-//		outSheet2Items.put(subcompany, item);
 	}
 
 	

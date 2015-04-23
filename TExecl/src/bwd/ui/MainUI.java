@@ -68,7 +68,7 @@ public class MainUI extends javax.swing.JFrame {
 		jLabel5 = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("Excel转换工具 v2.0");
+		setTitle("Excel转换工具 v2.1");
 		setBounds(new java.awt.Rectangle(200, 200, 400, 200));
 
 		jLabel3.setFont(new java.awt.Font("微軟正黑體", 1, 14)); // NOI18N
@@ -506,6 +506,7 @@ public class MainUI extends javax.swing.JFrame {
 		if (JFileChooser.APPROVE_OPTION == src_jfc.showOpenDialog(this)) {
 			this.jtf_srcPathname.setText(src_jfc.getSelectedFile().getAbsolutePath());
 			src_jfc.setCurrentDirectory(src_jfc.getSelectedFile());
+			dest_jfc.setCurrentDirectory(src_jfc.getSelectedFile());
 		}
 	}
 
@@ -516,6 +517,7 @@ public class MainUI extends javax.swing.JFrame {
 		if (JFileChooser.APPROVE_OPTION == dest_jfc.showOpenDialog(this)) {
 			if (dest_jfc.getSelectedFile().isDirectory()) {
 				this.jtf_destPath.setText(dest_jfc.getSelectedFile().getAbsolutePath());
+				src_jfc.setCurrentDirectory(dest_jfc.getSelectedFile());
 				dest_jfc.setCurrentDirectory(dest_jfc.getSelectedFile());
 			}
 		}
